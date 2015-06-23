@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  happiness: 1
+  energy: 1
+  motivtion: 1
+
+two:
+  happiness: 1
+  energy: 1
+  motivtion: 1
