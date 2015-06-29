@@ -1,4 +1,6 @@
 class InputController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     day = Mood.order(:created_at).first.created_at.yesterday.strftime('%F')
     happiness = 0
