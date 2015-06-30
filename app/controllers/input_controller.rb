@@ -1,6 +1,9 @@
 class InputController < ApplicationController
   def index
-    day = Mood.order(:created_at).first.created_at.yesterday.strftime('%F')
+    @moods = []
+    first_mood = Mood.order(:created_at).first
+    return if first_mood.nil?
+    day = first_mood.created_at.yesterday.strftime('%F')
     happiness = 0
     energy = 0
     motivation = 0
