@@ -1,6 +1,6 @@
 <h1>Mood Lines</h1>
 
-<% if !@moods.empty? %>
+<% if @has_moods %>
   <script type="text/javascript">
     google.setOnLoadCallback(drawChart);
 
@@ -27,41 +27,45 @@
   <div id="curve_chart" style="width: 900px; height: 500px"></div>
 <% end %>
 
-<%= form_for :input, url: {action: 'create'} do |f| %>
-  <h2>My happiness is:</h2>
+<% if @done_for_today %>
+  Thank you! Please come back again tomorrow.
+<% else %>
+  <%= form_for :input, url: {action: 'create'} do |f| %>
+    <h2>My happiness is:</h2>
 
-  <%= radio_button_tag(:happiness, '-1') %>
-  <%= label_tag(:happiness_worse, 'worse than yesterday') %>
+    <%= radio_button_tag(:happiness, '-1') %>
+    <%= label_tag(:happiness_worse, 'worse than yesterday') %>
 
-  <%= radio_button_tag(:happiness, '0', checked = true) %>
-  <%= label_tag(:happiness_same, 'the same as yesterday') %>
+    <%= radio_button_tag(:happiness, '0', checked = true) %>
+    <%= label_tag(:happiness_same, 'the same as yesterday') %>
 
-  <%= radio_button_tag(:happiness, '1') %>
-  <%= label_tag(:happiness_better, 'better than yesterday') %>
+    <%= radio_button_tag(:happiness, '1') %>
+    <%= label_tag(:happiness_better, 'better than yesterday') %>
 
-  <h2>My energy is:</h2>
+    <h2>My energy is:</h2>
 
-  <%= radio_button_tag(:energy, '-1') %>
-  <%= label_tag(:energy_worse, 'worse than yesterday') %>
+    <%= radio_button_tag(:energy, '-1') %>
+    <%= label_tag(:energy_worse, 'worse than yesterday') %>
 
-  <%= radio_button_tag(:energy, '0', checked = true) %>
-  <%= label_tag(:energy_same, 'the same as yesterday') %>
+    <%= radio_button_tag(:energy, '0', checked = true) %>
+    <%= label_tag(:energy_same, 'the same as yesterday') %>
 
-  <%= radio_button_tag(:energy, '1') %>
-  <%= label_tag(:energy_better, 'better than yesterday') %>
+    <%= radio_button_tag(:energy, '1') %>
+    <%= label_tag(:energy_better, 'better than yesterday') %>
 
-  <h2>My motivation is:</h2>
+    <h2>My motivation is:</h2>
 
-  <%= radio_button_tag(:motivation, '-1') %>
-  <%= label_tag(:motivation_worse, 'worse than yesterday') %>
+    <%= radio_button_tag(:motivation, '-1') %>
+    <%= label_tag(:motivation_worse, 'worse than yesterday') %>
 
-  <%= radio_button_tag(:motivation, '0', checked = true) %>
-  <%= label_tag(:motivation_same, 'the same as yesterday') %>
+    <%= radio_button_tag(:motivation, '0', checked = true) %>
+    <%= label_tag(:motivation_same, 'the same as yesterday') %>
 
-  <%= radio_button_tag(:motivation, '1') %>
-  <%= label_tag(:motivation_better, 'better than yesterday') %>
+    <%= radio_button_tag(:motivation, '1') %>
+    <%= label_tag(:motivation_better, 'better than yesterday') %>
 
-  <p>
-    <%= f.submit %>
-  </p>
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
 <% end %>
